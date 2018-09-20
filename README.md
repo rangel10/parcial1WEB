@@ -17,6 +17,11 @@ In the applicaotion main folder
 In the front folder
 `yarn install` or `npm install`
 
+## How to run
+Run `yarn start` in the application main folder and in the front folder
+
+The Applicaiton will run in (http://localhost:3000) 
+
 ## License
 [MIT](https://github.com/rangel10/parcial1WEB/blob/master/LICENSE)
 
