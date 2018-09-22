@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import vegaEmbed from 'vega-embed';
 
 export default class Viz extends Component {

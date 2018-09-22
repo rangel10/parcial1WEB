@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import './App.css';
 import FileData from './FileData' ;
 import Viz from './Viz';
-import vegaEmbed from 'vega-embed';
 
 class App extends Component {
   constructor(props) {
