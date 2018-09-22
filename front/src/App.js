@@ -1,61 +1,45 @@
 import React, { Component } from 'react';
 import './App.css';
-import Info from './Info';
+import FileData from './FileData' ;
 import Viz from './Viz';
 import vegaEmbed from 'vega-embed';
-import embed from 'vega-embed';
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      vizJson: {'$schema': 'https://vega.github.io/schema/vega-lite/v2.json',
-            'description': 'A scatterplot showing horsepower and miles per gallons for various cars.',
-            'data': {'url': 'data/cars.json'},
-            'mark': 'point',
-            'encoding': {
-              'x': {'field': 'Horsepower','type': 'quantitative'},
-              'y': {'field': 'Miles_per_Gallon','type': 'quantitative'}
-            }
-          }
+      spec: {
+        "data": {
+          "name": "data"
+        },
+        "mark": "bar",
+        "encoding": {
+          "x": { "field": "a", "type": "ordinal" },
+          "y": { "field": "b", "type": "quantitative" }
+        }
+      },
+      data: [],
     }
   }
 
-  componentDidMount() {
-    
+  changeData(data) {
+    this.setState({data: data});
   }
-  
-  renderViz(viz) {
-    this.state.infos.map((info) => {
-      //<Info info={inf}/>
-      <div key={info.id}>info.property</div>
-    });
-    vegaEmbed(viz);
+
+  handleTextChange(e) {
+    this.setState({spec: JSON.parse(e.target.value)});
   }
-  
+
+
   render() {
     return (
       <div className="App">
         <h1>Parcial 1</h1>
-        <form>
-          Seleccionar archivo:
-          <input type="file"></input>
-          <input type="submit"></input>
-          
-
-          <textarea cols="50" rows="30" value="{'$schema': 'https://vega.github.io/schema/vega-lite/v2.json',
-      'description': 'A scatterplot showing horsepower and miles per gallons for various cars.',
-      'data': {'url': 'data/cars.json'},
-      'mark': 'point',
-      'encoding': {
-        'x': {'field': 'Horsepower','type': 'quantitative'},
-        'y': {'field': 'Miles_per_Gallon','type': 'quantitative'}
-      }
-    }" ref={(textarea) => this.divTarget=textarea} onChange={this.divTarget.value=JSON.stringify(this.state.vizJson,null,2)}>
-          </textarea>
-          <div>{vegaEmbed(this.divTarget,this.divTarget.value,{'mode':'vega-lite'})}</div>
-        </form>
-        <Viz/>
+        <FileData changeData={data => this.changeData(data)}/>
+        <textarea cols="50" rows="30" value={JSON.stringify(this.state.spec, null, 2)}
+                    onChange={this.handleTextChange}>
+        </textarea>
+        <Viz data={this.state.data} spec={this.state.spec} />
       </div>
     );
   }
