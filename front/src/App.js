@@ -26,6 +26,10 @@ class App extends Component {
     this.setState({data: data});
   }
 
+  changeSpec(spec) {
+    this.setState({spec: spec});
+  }
+
   handleTextChange(e) {
     this.setState({spec: JSON.parse(e.target.value)});
   }
@@ -35,7 +39,8 @@ class App extends Component {
     return (
       <div className="App">
         <h1>Parcial 1</h1>
-        <FileData changeData={data => this.changeData(data)}/>
+        <FileData data={this.state.data} spec={this.state.spec} changeData={data => this.changeData(data)} 
+          changeSpec={spec => this.changeSpec(spec)}/>
         <textarea cols="50" rows="30" value={JSON.stringify(this.state.spec, null, 2)}
                     onChange={this.handleTextChange}>
         </textarea>

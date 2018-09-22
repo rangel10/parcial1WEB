@@ -25,7 +25,8 @@ const insertGraficas = function (db, data, callback) {
   // Get the documents collection
   const collection = db.collection('graficas');
   // Insert some documents
-  collection.insertMany(data, function (err, result) {
+  console.log(data);
+  collection.insertMany([data], function (err, result) {
     assert.equal(err, null);
     console.log("Inserted documents into the collection");
     callback(result);

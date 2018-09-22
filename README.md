@@ -20,7 +20,11 @@ In the front folder
 ## How to run
 Run `yarn start` in the application main folder and in the front folder
 
-The Applicaiton will run in (http://localhost:3000) 
+The Applicaiton will run in (http://localhost:3000)
+
+Create a database in MongoDB and add a collection named "graficas"
+
+Edit the file in `./routes/index,js` and change the variables `url` and `dbName` according to your database url and name
 
 ## License
 [MIT](https://github.com/rangel10/parcial1WEB/blob/master/LICENSE)
