@@ -34,8 +34,8 @@ export default class FileData extends Component {
             return;
         }
         let g = {
-            name: this.inputName,
-            title: this.inputTitle,
+            name: this.inputName.value,
+            title: this.inputTitle.value,
             spec: this.props.spec,
             data: this.props.data
         }
@@ -66,7 +66,7 @@ export default class FileData extends Component {
                     this.props.changeSpec(res.spec);
                     this.props.changeData(res.data);
                     this.inputName.value = res.name;
-                    this.inputTitle = res.title;
+                    this.inputTitle.value = res.title;
                 }
             })
             .catch(err => console.log(err));
@@ -78,7 +78,23 @@ export default class FileData extends Component {
             alert('Escriba un nombre de calificador');
             return;
         }
-        
+        let g = {
+            name: this.inputName.value,
+            title: this.inputTitle.value,
+            spec: this.props.spec,
+            data: this.props.data,
+            rating: this.rating.value
+        }
+        fetch('/postGraficas', {
+            method: 'POST',
+            body: g
+        })
+            .then((res) => {
+                console.log(res);
+                alert('Enviado con éxito');
+            })
+            .catch(err => console.log(err));
+
     }
 
     render() {
