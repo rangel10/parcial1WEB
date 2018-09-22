@@ -2,16 +2,12 @@
 
 ## Requirements
 * Node.js
+* MongoDB
 
 ## Installation
 Prepare the data
 
-Go to data folder
-`cd data`
-Import the data
-`mongoimport -d dbname -c collectionname --jsonArray --file file`
-
-In the applicaotion main folder
+In the application main folder
 `yarn install` or `npm install`
 
 In the front folder
